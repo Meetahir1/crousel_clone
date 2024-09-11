@@ -9,12 +9,12 @@ let selectedSlide = 0;
 
 let tl = gsap.timeline();
 
-tl.to("i",{
-    x:"0%",
-    opacity:1,
-    duration:.8,
-    stagger:.18,
-    ease:"expo.in"
+tl.to("i", {
+    x: "0%",
+    opacity: 1,
+    duration: .8,
+    stagger: .18,
+    ease: "expo.in"
 })
 
 let currentIndex = 0;
@@ -86,7 +86,7 @@ function slider() {
         x: 0,
         opacity: 1,
         duration: 0.4,
-        ease: "power1"
+        ease: "expo.in"
     })
     setTimeout(() => {
         gsap.to("#img_cont img", {
@@ -132,7 +132,7 @@ callInterval();
 function btmNavigation() {
     arrows.forEach(function (tag) {
         tag.addEventListener("click", function (elem) {
-            if (elem.target.classList.contains("ri-arrow-left-s-fill")) {
+            if (elem.target.classList.contains("ri-arrow-left-s-line")) {
 
                 let firstImage = bottom_cont.childNodes[0].getBoundingClientRect();
 
@@ -170,7 +170,11 @@ function btmNavigation() {
         })
     })
 }
-btmNavigation();
+
+if (window.innerWidth > 600) {
+    btmNavigation();
+}
+
 
 function selection(selectionIndex) {
     gsap.to(bottom_cont.childNodes[selectionIndex], {
@@ -186,25 +190,16 @@ function blurr() {
     })
 }
 
-let i = document.querySelectorAll("i");
+let i = document.querySelectorAll(".same");
 let h3 = document.querySelectorAll("h3");
 i.forEach((tag) => {
     tag.addEventListener("mouseenter", () => {
         tag.classList = tag.classList.value.replace("line", "fill");
     })
-    if (tag.classList.value != "ri-home-5-fill") {
-        tag.addEventListener("mouseleave", () => {
-            tag.classList = tag.classList.value.replace("fill", "line");
-        })
-    }
-})
-h3.forEach((tag, idx) => {
-    tag.addEventListener("mouseenter", () => {
-        tag.classList.add('same');
-        i[idx].classList.add('same');
-    })
-    tag.addEventListener("mouseleave", () => {
-        tag.classList = tag.classList.remove("same");
-        i[idx].classList.remove('same');
-    })
+        if (tag.classList.value != "ri-home-5-fill") {
+            tag.addEventListener("mouseleave", () => {
+                tag.classList = tag.classList.value.replace("fill", "line");
+                console.log(tag.classList.value)
+            })
+        }
 })
