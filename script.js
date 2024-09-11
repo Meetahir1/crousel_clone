@@ -17,6 +17,11 @@ tl.to("i", {
     ease: "expo.in"
 })
 
+setTimeout(() => {
+    slider();
+    callInterval();
+}, 3000);
+
 let currentIndex = 0;
 
 let arr = [
@@ -127,7 +132,6 @@ function callInterval() {
     interval = setInterval(slider, 5000);
 }
 
-callInterval();
 
 function btmNavigation() {
     arrows.forEach(function (tag) {
@@ -203,3 +207,4 @@ i.forEach((tag) => {
             })
         }
 })
+
